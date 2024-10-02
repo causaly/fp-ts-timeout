@@ -1,0 +1,91 @@
+name: CI
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+jobs:
+  block-autosquash:
+    # bypass the action if the PR is a draft
+    if: github.event.pull_request.draft == false
+    name: block-autosquash
+    runs-on: ubuntu-latest
+    steps:
+      - name: Block autosquash commits
+        uses: xt0rted/block-autosquash-commits-action@v2.0.0
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+  build:
+    # bypass the action if the PR is a draft
+    if: github.event.pull_request.draft == false
+    name: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+
+      - uses: actions/cache@v4
+        id: npm-cache
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json', '.nvmrc') }}
+
+      - uses: actions/cache@v4
+        id: dist
+        with:
+          path: '**/dist'
+          key: ${{ runner.os }}-dist-${{ github.sha }}
+
+      - name: Install dependencies
+        if: steps.npm-cache.outputs.cache-hit != 'true'
+        run: npm ci --ignore-scripts
+
+      - name: Build dist files
+        run: npm run build
+
+  test-unit:
+    name: test:unit
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+
+      - uses: actions/cache@v4
+        id: npm-cache
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json', '.nvmrc') }}
+
+      - uses: actions/cache@v4
+        with:
+          path: '**/dist'
+          key: ${{ runner.os }}-dist-${{ github.sha }}
+
+      - name: Run tests
+        run: npm run test
+
+  test-deno:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        deno: ['v1.x']
+    name: test:deno(${{ matrix.deno }})
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: denoland/setup-deno@v1
+        with:
+          deno-version: ${{ matrix.deno }}
+      - run: deno --version
+      - run: deno run ./index.ts
+        working-directory: ./lib

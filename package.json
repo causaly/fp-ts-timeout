@@ -1,0 +1,89 @@
+{
+  "name": "fp-ts-timeout",
+  "version": "0.0.0",
+  "description": "Timeout functionality for fp-ts async structures",
+  "keywords": [
+    "fp-ts",
+    "timeout"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/causaly/fp-ts-timeout.git"
+  },
+  "author": {
+    "name": "Dimitrios C. Michalakos",
+    "email": "dimitris@jmike.gr",
+    "url": "https://github.com/jmike"
+  },
+  "contributors": [
+    {
+      "name": "Emil Culic",
+      "url": "https://github.com/radoi90"
+    }
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "tsup --config ./tsup.config.ts",
+    "lint": "eslint lib --ext .ts",
+    "format": "prettier --config ./.prettierrc --ignore-path .gitignore -w .",
+    "test": "jest",
+    "coverage": "jest --coverage",
+    "changeset": "changeset",
+    "prerelease": "npm run build && npm run test",
+    "release": "changeset publish",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --config ./.prettierrc --write"
+    ]
+  },
+  "devDependencies": {
+    "@changesets/changelog-github": "^0.5.0",
+    "@changesets/cli": "^2.27.7",
+    "@commitlint/cli": "^18.0.0",
+    "@commitlint/config-conventional": "^18.0.0",
+    "@types/jest": "^29.2.4",
+    "@types/node": "^20.5.0",
+    "@typescript-eslint/eslint-plugin": "^6.4.1",
+    "@typescript-eslint/parser": "^6.4.1",
+    "eslint": "^8.4.1",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "fp-ts": "^2.16.9",
+    "husky": "^8.0.3",
+    "jest": "^29.3.1",
+    "lint-staged": "^15.0.1",
+    "prettier": "^2.8.8",
+    "rimraf": "^5.0.1",
+    "ts-jest": "^29.0.3",
+    "tsup": "^8.0.2",
+    "typescript": "^5.1.6"
+  },
+  "peerDependencies": {
+    "fp-ts": "^2.16.9"
+  }
+}
