@@ -1,6 +1,6 @@
-import * as Either from 'fp-ts/Either';
-import { pipe } from 'fp-ts/function';
-import * as TaskEither from 'fp-ts/TaskEither';
+import * as Either from 'fp-ts/lib/Either.js';
+import { pipe } from 'fp-ts/lib/function.js';
+import * as TaskEither from 'fp-ts/lib/TaskEither.js';
 
 import { TimeoutError } from './errors.ts';
 

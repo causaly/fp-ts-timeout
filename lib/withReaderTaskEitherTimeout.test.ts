@@ -1,7 +1,7 @@
-import { pipe } from 'fp-ts/function';
-import * as ReaderTaskEither from 'fp-ts/ReaderTaskEither';
-import * as Task from 'fp-ts/Task';
-import * as TaskEither from 'fp-ts/TaskEither';
+import { pipe } from 'fp-ts/lib/function.js';
+import * as ReaderTaskEither from 'fp-ts/lib/ReaderTaskEither.js';
+import * as Task from 'fp-ts/lib/Task.js';
+import * as TaskEither from 'fp-ts/lib/TaskEither.js';
 import {
   expectLeftReaderTaskEither,
   expectRightReaderTaskEither,
