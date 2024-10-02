@@ -1,5 +1,5 @@
 module.exports = {
   preset: 'ts-jest',
-  collectCoverageFrom: ['lib/**/*.{js,ts}'],
-  testRegex: './lib/.*\\.(test|spec)\\.(js|ts)$',
+  collectCoverageFrom: ['lib/**/*.ts'],
+  testRegex: './lib/.*\\.(test|spec)\\.ts$',
 };

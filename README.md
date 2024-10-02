@@ -10,6 +10,40 @@ Timeout functionality for fp-ts async structures.
 npm install fp-ts-timeout
 ```
 
+#### Requirements
+
+- Node.js v.18+
+- TypeScript v.4.5+
+
+## Quick start
+
+```typescript
+import * as Either from 'fp-ts/Either';
+import * as TaskEither from 'fp-ts/TaskEither';
+import { withTaskEitherTimeout, isTimeoutError } from 'fp-ts-timeout';
+
+pipe(
+  TaskEither.tryCatch(
+    () => {
+      // some async operation
+    }),
+    Either.toError
+  ),
+  withTaskEitherTimeout(1000) // 1 second timeout
+  TaskEither.match(
+    (error) => {
+      if (isTimeoutError(error)) {
+        // handle timeout error
+      } else {
+        // handle other errors
+      }
+    },
+    (result) => {
+      // handle success
+    }
+)
+```
+
 ## Contribute
 
 Source code contributions are most welcome. Please open a PR, ensure the linter is satisfied and all tests pass.
