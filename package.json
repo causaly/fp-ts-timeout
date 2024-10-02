@@ -1,6 +1,6 @@
 {
   "name": "fp-ts-timeout",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Timeout functionality for fp-ts async structures",
   "keywords": [
     "fp-ts",
