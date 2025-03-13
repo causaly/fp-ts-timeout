@@ -15,7 +15,19 @@ npm install fp-ts-timeout
 - Node.js v.18+
 - TypeScript v.4.5+
 
-## Quick start
+## API
+
+- [withTaskEitherTimeout(number)](#withtaskeithertimeout)
+- [withReaderTaskEitherTimeout(number)](#withreadertaskeithertimeout)
+- [TimeoutError](#timeouterror)
+- [withTaskEitherRetry(options)](#withreadertaskeitherretry)
+- [withReaderTaskEitherRetry(options)](#withreadertaskeitherretry)
+
+### withTaskEitherTimeout
+
+A higher-order function for setting a timeout on asynchronous operations.
+
+#### Example
 
 ```typescript
 import * as Either from 'fp-ts/Either';
@@ -43,6 +55,106 @@ pipe(
     }
 )
 ```
+
+### withReaderTaskEitherTimeout
+
+A higher-order function for setting a timeout on asynchronous operations.
+
+#### Example
+
+```typescript
+import * as Either from 'fp-ts/Either';
+import * as TaskEither from 'fp-ts/TaskEither';
+import * as ReaderTaskEither from 'fp-ts/ReaderTaskEither';
+import { withTaskEitherTimeout, isTimeoutError } from 'fp-ts-timeout';
+
+pipe(
+  TaskEither.tryCatch(
+    () => {
+      // some async operation
+    }),
+    Either.toError
+  ),
+  ReaderTaskEither.fromTaskEither,
+  withReaderTaskEitherTimeout(1000), // 1 second timeout
+  TaskEither.match(
+    (error) => {
+      if (isTimeoutError(error)) {
+        // handle timeout error
+      } else {
+        // handle other errors
+      }
+    },
+    (result) => {
+      // handle success
+    }
+)
+```
+
+### TimeoutError
+
+Custom error thrown when an asynchronous operation exceeds the defined timeout limit.
+
+### withTaskEitherRetry
+
+A higher-order function for retrying asynchronous operations, utilizing [p-retry](https://www.npmjs.com/package/p-retry) under the hood. Refer to the package documentation for available [options](https://github.com/sindresorhus/p-retry?tab=readme-ov-file#options) and details.
+
+#### Example
+
+```typescript
+import * as Either from 'fp-ts/Either';
+import * as TaskEither from 'fp-ts/TaskEither';
+import { withTaskEitherRetry } from 'fp-ts-timeout';
+
+pipe(
+  TaskEither.tryCatch(
+    () => {
+      // some async operation
+    }),
+    Either.toError
+  ),
+  withTaskEitherRetry({ retries: 2 }),
+  TaskEither.match(
+    (error) => {
+      // handle errors
+    },
+    (result) => {
+      // handle success
+    }
+)
+```
+
+### withReaderTaskEitherRetry
+
+A higher-order function for retrying asynchronous operations, utilizing [p-retry](https://www.npmjs.com/package/p-retry) under the hood. Refer to the package documentation for available [options](https://github.com/sindresorhus/p-retry?tab=readme-ov-file#options) and details.
+
+#### Example
+
+```typescript
+import * as Either from 'fp-ts/Either';
+import * as TaskEither from 'fp-ts/TaskEither';
+import * as ReaderTaskEither from 'fp-ts/ReaderTaskEither';
+import { withReaderTaskEitherRetry } from 'fp-ts-timeout';
+
+pipe(
+  TaskEither.tryCatch(
+    () => {
+      // some async operation
+    }),
+    Either.toError
+  ),
+  ReaderTaskEither.fromTaskEither,
+  withReaderTaskEitherRetry({ retries: 2 }),
+  TaskEither.match(
+    (error) => {
+      // handle errors
+    },
+    (result) => {
+      // handle success
+    }
+)
+```
+
 
 ## Contribute
 
