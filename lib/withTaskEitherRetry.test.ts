@@ -5,7 +5,6 @@ import {
   expectLeftTaskEither,
   expectRightTaskEither,
 } from 'jest-fp-ts-matchers';
-import { describe, it, expect, vi } from 'vitest';
 import { withTaskEitherRetry } from './withTaskEitherRetry.ts';
 import { RetriesExceededError } from './errors.ts';
 
