@@ -5,7 +5,6 @@ import {
   expectLeftTaskEither,
   expectRightTaskEither,
 } from 'jest-fp-ts-matchers';
-import { describe, it, expect } from 'vitest';
 import { withTaskEitherTimeout } from './withTaskEitherTimeout.ts';
 import { TimeoutError } from './errors.ts';
 

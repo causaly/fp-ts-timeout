@@ -6,7 +6,6 @@ import {
   expectLeftReaderTaskEither,
   expectRightReaderTaskEither,
 } from 'jest-fp-ts-matchers';
-import { describe, it, expect } from 'vitest';
 import { withReaderTaskEitherTimeout } from './withReaderTaskEitherTimeout.ts';
 import { TimeoutError } from './errors.ts';
 
