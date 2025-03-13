@@ -19,6 +19,9 @@ export const withTaskEitherRetry =
 
     return TaskEither.tryCatch(
       () => pRetry(task, options),
+      // promises return unknown errors by default
+      // however we know the error type because we are using a TaskEither
+      // therefore, it's safe to cast the error to LeftType
       (err) => err as LeftType
     );
   };
