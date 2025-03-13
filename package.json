@@ -88,5 +88,8 @@
   },
   "peerDependencies": {
     "fp-ts": "^2.16.9"
+  },
+  "dependencies": {
+    "p-retry": "^6.2.1"
   }
 }
