@@ -1,10 +1,7 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "lib": [
-      "esnext",
-      "dom"
-    ],
+    "lib": ["esnext", "dom"],
     "moduleResolution": "node",
     "strict": true,
     "declaration": true,
@@ -13,7 +10,6 @@
     "allowImportingTsExtensions": true,
     "emitDeclarationOnly": true
   },
-  "include": [
-    "./lib/**/*.ts"
-  ]
+  "include": ["./lib/**/*.ts"],
+  "exclude": ["./node_modules", "./dist"]
 }
