@@ -20,6 +20,7 @@ export const withTaskEitherRetry =
 
     return TaskEither.tryCatch(
       () => pRetry(task, options),
-      (err) => new RetriesExceededError('Retries exceeded', { cause: err })
+      (err) =>
+        new RetriesExceededError('Retry attempts exceeded', { cause: err })
     );
   };
