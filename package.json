@@ -80,6 +80,7 @@
     "husky": "^8.0.3",
     "jest-fp-ts-matchers": "^0.5.0",
     "lint-staged": "^15.0.1",
+    "p-retry": "^6.2.1",
     "prettier": "^2.8.8",
     "rimraf": "^5.0.1",
     "tsup": "^8.4.0",
@@ -88,8 +89,5 @@
   },
   "peerDependencies": {
     "fp-ts": "^2.16.9"
-  },
-  "dependencies": {
-    "p-retry": "^6.2.1"
   }
 }
