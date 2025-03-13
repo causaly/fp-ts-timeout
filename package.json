@@ -1,8 +1,8 @@
 {
   "type": "module",
   "name": "fp-ts-timeout",
-  "version": "0.1.1",
-  "description": "Timeout functionality for fp-ts async structures",
+  "version": "1.0.0",
+  "description": "Timeout and retry functionality for fp-ts async structures",
   "keywords": [
     "fp-ts",
     "timeout"
@@ -21,6 +21,10 @@
     {
       "name": "Emil Culic",
       "url": "https://github.com/radoi90"
+    },
+    {
+      "name": "Nikos Tsompanidis",
+      "url": "https://github.com/NikosTsompanides"
     }
   ],
   "main": "./dist/index.js",
