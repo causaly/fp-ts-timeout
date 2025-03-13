@@ -88,11 +88,5 @@
   },
   "peerDependencies": {
     "fp-ts": "^2.16.9"
-  },
-  "vitest": {
-    "test": {
-      "globals": true,
-      "environment": "node"
-    }
   }
 }
