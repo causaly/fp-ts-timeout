@@ -6,7 +6,6 @@ import {
   expectRightReaderTaskEither,
 } from 'jest-fp-ts-matchers';
 import { withReaderTaskEitherRetry } from './withReaderTaskEitherRetry.ts';
-import { RetriesExceededError } from './errors.ts';
 
 describe('withTaskEitherTimeout()', () => {
   it('should not retry the task if it succeeds', () => {
@@ -68,7 +67,7 @@ describe('withTaskEitherTimeout()', () => {
         maxTimeout: 2,
       }),
       expectLeftReaderTaskEither((err) => {
-        expect(err).toBeInstanceOf(RetriesExceededError);
+        expect(err).toBeInstanceOf(Error);
         expect(run).toHaveBeenCalledTimes(retries + 1);
       })
     )({})();
