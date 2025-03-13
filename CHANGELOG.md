@@ -1,5 +1,11 @@
 # @causaly/fp-ts-timeout
 
+## 0.2.0
+
+### Minor Changes
+
+- fa0c098: Introduce the "withTaskEitherRetry" and "withReaderTaskEitherRetry" functions
+
 ## 0.1.1
 
 ### Patch Changes
