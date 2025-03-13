@@ -1,6 +1,6 @@
 import pRetry from 'p-retry';
-import * as TaskEither from 'fp-ts/TaskEither';
-import { identity, pipe } from 'fp-ts/lib/function';
+import * as TaskEither from 'fp-ts/lib/TaskEither.js';
+import { identity, pipe } from 'fp-ts/lib/function.js';
 import { RetriesExceededError } from './errors.ts';
 import type { Options } from 'p-retry';
 
