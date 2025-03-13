@@ -12,7 +12,7 @@ describe('withTaskEitherTimeout()', () => {
   it('should not retry the task if it succeeds', () => {
     const retries = 2;
     const run = vi.fn(() => Promise.resolve('success'));
-    const rte = () => TaskEither.tryCatch(run, (error) => error);
+    const rte = () => TaskEither.fromTask(run);
 
     return pipe(
       rte,
@@ -37,7 +37,7 @@ describe('withTaskEitherTimeout()', () => {
       .mockRejectedValueOnce(new Error('failed'))
       .mockResolvedValueOnce('success');
 
-    const rte = () => TaskEither.tryCatch(run, (error) => error);
+    const rte = () => TaskEither.fromTask(run);
 
     return pipe(
       rte,
@@ -57,7 +57,7 @@ describe('withTaskEitherTimeout()', () => {
   it('should retry the task and fail after max retries', () => {
     const retries = 2;
     const run = vi.fn(() => Promise.reject(new Error('test')));
-    const rte = () => TaskEither.tryCatch(run, (error) => error);
+    const rte = () => TaskEither.fromTask(run);
 
     return pipe(
       rte,
