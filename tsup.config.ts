@@ -8,5 +8,4 @@ export default defineConfig({
   format: ['cjs', 'esm'],
   dts: true,
   outDir: 'dist',
-  noExternal: ['p-retry'],
 });
