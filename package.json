@@ -1,6 +1,9 @@
 {
+  "type": "module",
   "name": "fp-ts-timeout",
   "version": "0.2.0",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "description": "Timeout and retry functionality for fp-ts async structures",
   "keywords": [
     "fp-ts",
@@ -27,16 +30,6 @@
       "url": "https://github.com/NikosTsompanides"
     }
   ],
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "require": "./dist/index.js",
-      "import": "./dist/index.mjs"
-    }
-  },
   "files": [
     "dist"
   ],
@@ -81,7 +74,6 @@
     "husky": "^8.0.3",
     "jest-fp-ts-matchers": "^0.5.0",
     "lint-staged": "^15.0.1",
-    "p-retry": "^6.2.1",
     "prettier": "^2.8.8",
     "rimraf": "^5.0.1",
     "tsup": "^8.4.0",
@@ -90,5 +82,8 @@
   },
   "peerDependencies": {
     "fp-ts": "^2.16.9"
+  },
+  "dependencies": {
+    "p-retry": "^6.2.1"
   }
 }

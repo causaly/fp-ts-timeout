@@ -5,8 +5,7 @@ export default defineConfig({
   splitting: false,
   sourcemap: true,
   clean: true,
-  format: ['cjs', 'esm'],
+  format: ['esm'],
   dts: true,
   outDir: 'dist',
-  noExternal: ['p-retry'],
 });
