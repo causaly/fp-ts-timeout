@@ -1,5 +1,11 @@
 # @causaly/fp-ts-timeout
 
+## 1.0.0
+
+### Major Changes
+
+- 55fca07: Converts the module to an ES module
+
 ## 0.2.0
 
 ### Minor Changes

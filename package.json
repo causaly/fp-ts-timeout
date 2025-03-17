@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "fp-ts-timeout",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "description": "Timeout and retry functionality for fp-ts async structures",
