@@ -6,8 +6,7 @@ on:
 
 jobs:
   block-autosquash:
-    # bypass the action if the PR is a draft
-    if: github.event.pull_request.draft == false
+    if: ${{ github.event_name == 'pull_request' && github.event.pull_request.draft == false }}
     name: block-autosquash
     runs-on: ubuntu-latest
     steps:
@@ -75,13 +74,20 @@ jobs:
         run: npm run test
 
   test-deno:
+    needs: build
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        deno: ['v1.x']
+        deno: ['v1.x', 'v2.x']
     name: test:deno(${{ matrix.deno }})
     steps:
       - uses: actions/checkout@v4
+
+      - uses: actions/cache@v4
+        id: npm-cache
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json', '.nvmrc') }}
 
       - uses: denoland/setup-deno@v1
         with:
